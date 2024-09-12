@@ -1,0 +1,11 @@
+FUNCTIONS:
+  add: add two numbers
+  subtract: subtract two numbers
+  multiply: multiply two numbers
+  divide: divide two numbers
+
+  operate: takes operator and two numbers and then  calls  one of the above functions
+
+  displayEquation: displays the equation (numbers and operator on the screen)
+
+  
