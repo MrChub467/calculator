@@ -18,9 +18,18 @@ body {
   gap: 10px;
 }
 
-.display {
+.display-area {
   background-color: rgb(49, 49, 49);
   height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.display-text {
+  font-size: 50px;
+  padding: 10px;
+  color: white;
 }
 
 .buttons {
