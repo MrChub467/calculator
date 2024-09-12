@@ -14,16 +14,18 @@ function divide(num1, num2) {
 function operate(num1, num2, operator) {
   switch(operator) {
     case "+":
-      add(num1, num2)
+      result = add(num1, num2)
       break;
     case "-":
-      subtract(num1, num2)
+      result = subtract(num1, num2)
       break;
     case "*":
-      multiply(num1, num2)
+      result = multiply(num1, num2)
       break;
     case "/":
-      divide(num1, num2)
+      result = divide(num1, num2)
       break;
   }
 }
+
+let result = "";
