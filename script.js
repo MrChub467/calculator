@@ -20,7 +20,7 @@ function operate(num1, num2, op) {
       result = division(num1, num2)
       break;
   }
-  if (result.toString().length > 6) result = parseFloat(result).toExponential(4);
+  if (result.toString().length > 8) result = parseFloat(result).toExponential(4);
   displayText.textContent = result;
   arg1 = result;
   arg2 = "0"
@@ -109,6 +109,7 @@ operatorBtns.forEach(button => {
   button.addEventListener("click", () => {
     if (operator === "") {
       operator = button.textContent;
+      button.classList.add("active");
     }
   });
 });
@@ -117,4 +118,16 @@ let result = "";
 let arg1 = "0";
 let arg2 = "0";
 let operator = "";
+
+const video = document.querySelector("#video")
+let vidControls = document.getElementById("start-stop").addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+    vidControls.textContent = "Pause";
+  } else {
+    video.pause();
+    vidControls.textContent = "Play";
+  }
+})
+
 

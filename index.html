@@ -7,32 +7,39 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <video autoplay muted loop id="video"><source src="binaryRain.mp4" type="video/mp4">
+  </video>
   <div class="container">
-    <div class="display-area">
-      <div class="display-text">
-        0
+    <div class="calculator">
+      <div class="display-area">
+        <div class="display-text">
+          0
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="clear">AC</button>
+        <button id="sign">+/-</button>
+        <button id="percent">%</button>
+        <button id="divide" class="operator-btn">÷</button>
+        <button id="seven" class="number-btn">7</button>
+        <button id="eight" class="number-btn">8</button>
+        <button id="nine" class="number-btn">9</button>
+        <button id="multiply" class="operator-btn">*</button>
+        <button id="four" class="number-btn">4</button>
+        <button id="five" class="number-btn">5</button>
+        <button id="six" class="number-btn">6</button>
+        <button id="subtract" class="operator-btn">-</button>
+        <button id="one" class="number-btn">1</button>
+        <button id="two" class="number-btn">2</button>
+        <button id="three" class="number-btn">3</button>
+        <button id="add" class="operator-btn">+</button>
+        <button id="zero" class="number-btn">0</button>
+        <button id="decimal">.</button>
+        <button id="equals">=</button>
       </div>
     </div>
-    <div class="buttons">
-      <button id="clear">AC</button>
-      <button id="sign">+/-</button>
-      <button id="percent">%</button>
-      <button id="divide" class="operator-btn">÷</button>
-      <button id="seven" class="number-btn">7</button>
-      <button id="eight" class="number-btn">8</button>
-      <button id="nine" class="number-btn">9</button>
-      <button id="multiply" class="operator-btn">*</button>
-      <button id="four" class="number-btn">4</button>
-      <button id="five" class="number-btn">5</button>
-      <button id="six" class="number-btn">6</button>
-      <button id="subtract" class="operator-btn">-</button>
-      <button id="one" class="number-btn">1</button>
-      <button id="two" class="number-btn">2</button>
-      <button id="three" class="number-btn">3</button>
-      <button id="add" class="operator-btn">+</button>
-      <button id="zero" class="number-btn">0</button>
-      <button id="decimal">.</button>
-      <button id="equals">=</button>
+    <div class="vid-controller">
+      <button id="start-stop">Pause</button>
     </div>
   </div>
   <script src="script.js"></script>
