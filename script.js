@@ -1,8 +1,19 @@
+let result = "";
+let arg1 = "";
+let arg2 = "";
+let operator = "";
+const displayText = document.querySelector(".display-text");
+const numBtns = document.querySelectorAll(".number-btn");
+const operatorBtns = document.querySelectorAll(".operator-btn")
+
+// -------------------- Operation between two numbers -------------------- //
+const equalBtn = document.querySelector("#equals").addEventListener("click", () => {
+  operate(arg1, arg2, operator);
+})
 const division = (a, b) => {
   if (b !== 0) {return a / b}
   else {return "Error"}
 };
-
 function operate(num1, num2, op) {
   if (num1 && num2) {
     num1 = parseFloat(num1);
@@ -34,6 +45,9 @@ function operate(num1, num2, op) {
   }
 }
 
+// -------------------- Update the Display -------------------- //
+const clearBtn = document.querySelector("#clear")
+clearBtn.addEventListener("click", clear)
 function updateDisplay() {
   if (operator != "" && arg2 != "") {
     if (arg2.length > 13) {
@@ -48,7 +62,6 @@ function updateDisplay() {
   if (displayText !== "0") clearBtn.textContent = "C";
   else clearBtn.textContent = "AC";
 }
-
 function clear() {
   displayText.textContent = "0";
   arg1 = "";
@@ -59,14 +72,8 @@ function clear() {
 
 
 
-const displayText = document.querySelector(".display-text");
-const numBtns = document.querySelectorAll(".number-btn");
-const operatorBtns = document.querySelectorAll(".operator-btn")
-const equalBtn = document.querySelector("#equals").addEventListener("click", () => {
-  operate(arg1, arg2, operator);
-})
-const clearBtn = document.querySelector("#clear")
-clearBtn.addEventListener("click", clear)
+
+// -------------------- Sign Support -------------------- //
 const sign = document.querySelector("#sign").addEventListener("click", () => {
   if (!operator) {
     arg1 = -arg1;
@@ -75,6 +82,8 @@ const sign = document.querySelector("#sign").addEventListener("click", () => {
   }
   updateDisplay();
 });
+
+// -------------------- Percent Support -------------------- //
 const percent = document.querySelector("#percent").addEventListener("click", () => {
   if (!operator) {
     arg1 = arg1 / 100;
@@ -84,6 +93,8 @@ const percent = document.querySelector("#percent").addEventListener("click", () 
   updateDisplay();
 });
 
+// -------------------- Decimal Support -------------------- //
+const decimal = document.querySelector("#decimal").addEventListener("click", addDecimal);
 function addDecimal() {
   if (!operator && !arg1.includes(".")) {
     arg1 += ".";
@@ -94,8 +105,12 @@ function addDecimal() {
   updateDisplay();
 }
 
-const decimal = document.querySelector("#decimal").addEventListener("click", addDecimal);
-
+// -------------------- Gets the two numbers -------------------- //
+numBtns.forEach(button => {
+  button.addEventListener("click", () => {
+    addNumber(button.textContent);
+  })
+});
 function addNumber(number) {
   if (!operator) {
     if (arg1 === "0" || result) {
@@ -115,29 +130,20 @@ function addNumber(number) {
   updateDisplay()
 }
 
-numBtns.forEach(button => {
-  button.addEventListener("click", () => {
-    addNumber(button.textContent);
-  })
-});
-
+// -------------------- Gets the Operator -------------------- //
 function getOperator(op) {
   if (operator === "" && arg1 !== "") {
     operator = op;
   }
 }
-
 operatorBtns.forEach(button => {
   button.addEventListener("click", () => {
     getOperator(button.textContent);
   });
 });
 
-let result = "";
-let arg1 = "";
-let arg2 = "";
-let operator = "";
 
+// -------------------- Video Background -------------------- //
 const video = document.querySelector("#video")
 let vidControls = document.querySelector("#start-stop")
 vidControls.addEventListener("click", () => {
@@ -150,12 +156,14 @@ vidControls.addEventListener("click", () => {
   }
 })
 
+// -------------------- Keyboard Support -------------------- //
+const KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "-", "+", ".", "Enter" ]
+const buttons = Array.from(document.getElementsByTagName("button"));
+
 function removeClass(btn) {
   btn.classList.remove("color");
 }
 
-const KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "-", "+", ".", "Enter" ]
-const buttons = Array.from(document.getElementsByTagName("button"));
 document.addEventListener('keydown', function(event) {
   const key = event.key; 
   buttons.forEach(button => {
