@@ -42,8 +42,8 @@ function updateDisplay() {
 
 function clear() {
   displayText.textContent = "0";
-  arg1 = "0";
-  arg2 = "0";
+  arg1 = "";
+  arg2 = "";
   operator = "";
 }
 
@@ -72,55 +72,66 @@ const percent = document.querySelector("#percent").addEventListener("click", () 
   }
   updateDisplay();
 });
-const decimal = document.querySelector("#decimal").addEventListener("click", () => {
+
+function addDecimal() {
   if (!operator && !arg1.includes(".")) {
     arg1 += ".";
   } 
-  else if(!arg2.includes(".")) {
+  else if(!arg2.includes(".") && operator) {
     arg2 += ".";
   }
   updateDisplay();
-});
+}
+
+const decimal = document.querySelector("#decimal").addEventListener("click", addDecimal);
+
+function addNumber(number) {
+  if (!operator) {
+    if (arg1 === "0" || result) {
+      arg1 = number;
+      result = "";
+    } else {
+      arg1 += number;
+    }
+    
+  }
+  else {
+    if (arg2 === "0") {
+      arg2 = number;
+    } else {
+      arg2 += number;
+    }
+    
+  }
+  updateDisplay()
+}
 
 numBtns.forEach(button => {
   button.addEventListener("click", () => {
-    if (!operator) {
-      if (arg1 === "0" || result) {
-        arg1 = button.textContent
-        result = "";
-      } else {
-        arg1 += button.textContent;
-      }
-      
-    }
-    else {
-      if (arg2 === "0") {
-        arg2 = button.textContent
-      } else {
-        arg2 += button.textContent;
-      }
-      
-    }
-    updateDisplay()
-  });
+    addNumber(button.textContent);
+  })
 });
+
+function getOperator(op) {
+  if (operator === "" && arg1 !== "") {
+    operator = op;
+  }
+}
 
 operatorBtns.forEach(button => {
   button.addEventListener("click", () => {
-    if (operator === "") {
-      operator = button.textContent;
-      button.classList.add("active");
-    }
+    getOperator(button.textContent);
   });
 });
 
 let result = "";
-let arg1 = "0";
+let arg1 = "";
 let arg2 = "0";
 let operator = "";
 
 const video = document.querySelector("#video")
-let vidControls = document.getElementById("start-stop").addEventListener("click", () => {
+let vidControls = document.querySelector("#start-stop")
+vidControls.addEventListener("click", () => {
   if (video.paused) {
     video.play();
     vidControls.textContent = "Pause";
@@ -129,5 +140,22 @@ let vidControls = document.getElementById("start-stop").addEventListener("click"
     vidControls.textContent = "Play";
   }
 })
-
-
+const KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "-", "+", ".", "Enter" ]
+document.addEventListener('keydown', function(event) {
+  const key = event.key; 
+  if (KEYS.includes(key)) {
+    console.log('Key pressed:', key); 
+    if (!isNaN(key)) {
+      addNumber(key);
+    }
+    else if (key === "Enter") {
+      operate(arg1, arg2, operator);
+    }
+    else if (key === ".") {
+      addDecimal();
+    }
+    else {
+      getOperator(key);
+    }
+  }
+});

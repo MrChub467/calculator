@@ -45,6 +45,10 @@ body {
   flex-direction: column;
   gap: 20px;
   width: 350px;
+  box-sizing: content-box;
+  background-color: rgb(88, 1, 88);
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .display-area {
