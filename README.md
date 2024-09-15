@@ -19,7 +19,7 @@ The calculator has the following features:
 ## Usage 
 
 Here is a [link](https://mrchub467.github.io/calculator/) to the live preview.
-Works like any physical calculator.
+Works like any physical calculator. Keyboard support for the numbers 0-9, /, *, -, +, Enter, and decimals
 
 ### Credits
 
