@@ -24,4 +24,5 @@ Works like any physical calculator.
 ### Credits
 
 Background credits go to Oleg Gamulinskii at [Pexels](https://www.pexels.com/video/binary-code-rain-animation-11584395/)
+
 Learned how to create this from [The Odin Project](https://www.theodinproject.com/dashboard) and [MDN Web Docs](https://developer.mozilla.org/en-US/)
