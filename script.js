@@ -45,6 +45,8 @@ function updateDisplay() {
       displayText.textContent = parseFloat(arg1).toExponential(2);
     } else displayText.textContent = arg1;
   }
+  if (displayText !== "0") clearBtn.textContent = "C";
+  else clearBtn.textContent = "AC";
 }
 
 function clear() {
@@ -52,6 +54,7 @@ function clear() {
   arg1 = "";
   arg2 = "";
   operator = "";
+  clearBtn.textContent = "AC";
 }
 
 
@@ -62,7 +65,8 @@ const operatorBtns = document.querySelectorAll(".operator-btn")
 const equalBtn = document.querySelector("#equals").addEventListener("click", () => {
   operate(arg1, arg2, operator);
 })
-const clearBtn = document.querySelector("#clear").addEventListener("click", clear)
+const clearBtn = document.querySelector("#clear")
+clearBtn.addEventListener("click", clear)
 const sign = document.querySelector("#sign").addEventListener("click", () => {
   if (!operator) {
     arg1 = -arg1;
