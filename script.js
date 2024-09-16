@@ -165,7 +165,10 @@ function removeClass(btn) {
 }
 
 document.addEventListener('keydown', function(event) {
-  const key = event.key; 
+  const key = event.key;
+  if (key === "Enter") {
+    event.preventDefault();
+  }
   buttons.forEach(button => {
     if (button.textContent === key ||
       (key === "/" && button.textContent === "÷") ||
