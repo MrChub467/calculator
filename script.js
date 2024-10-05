@@ -23,12 +23,15 @@ function operate(num1, num2, op) {
         result = num1 + num2;
         break;
       case "-":
-        result = num1 - num2;
+        result = ((num1 * 10) - (num2 * 10)) / 10;
         break;
       case "*":
         result = num1 * num2;
         break;
       case "÷":
+        result = division(num1, num2)
+        break;
+      case "/":
         result = division(num1, num2)
         break;
     }
@@ -75,31 +78,39 @@ function clear() {
 
 // -------------------- Sign Support -------------------- //
 const sign = document.querySelector("#sign").addEventListener("click", () => {
-  if (!operator) {
+  if (!operator && arg1) {
     arg1 = -arg1;
-  } else {
+    updateDisplay();
+  } 
+  else if (arg2){
     arg2 = -arg2;
+    updateDisplay();
   }
-  updateDisplay();
+  
 });
 
 // -------------------- Percent Support -------------------- //
 const percent = document.querySelector("#percent").addEventListener("click", () => {
-  if (!operator) {
+  if (!operator && arg1) {
     arg1 = arg1 / 100;
-  } else {
+    updateDisplay();
+  } 
+  else if (arg2) {
     arg2 = arg2 / 100;
+    updateDisplay();
   }
-  updateDisplay();
 });
 
 // -------------------- Decimal Support -------------------- //
 const decimal = document.querySelector("#decimal").addEventListener("click", addDecimal);
 function addDecimal() {
-  if (!operator && !arg1.includes(".")) {
+  if (!operator && !arg1.toString().includes(".")) {
     arg1 += ".";
   } 
-  else if(!arg2.includes(".") && operator) {
+  else if (!operator) {
+    arg1 = ".";
+  }
+  else if(!arg2.toString().includes(".") && operator) {
     arg2 += ".";
   }
   updateDisplay();
@@ -113,7 +124,7 @@ numBtns.forEach(button => {
 });
 function addNumber(number) {
   if (!operator) {
-    if (arg1 === "0" || result) {
+    if (arg1 === "0" || result && !arg1.includes(".") || arg1.includes("e")) {
       arg1 = number;
       result = "";
     } else {
@@ -133,6 +144,10 @@ function addNumber(number) {
 // -------------------- Gets the Operator -------------------- //
 function getOperator(op) {
   if (operator === "" && arg1 !== "") {
+    operator = op;
+  }
+  else if (operator && arg1 && arg2) {
+    operate(arg1, arg2, operator);
     operator = op;
   }
 }
